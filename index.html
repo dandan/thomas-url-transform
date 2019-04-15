@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style>
+
+      body {
+        background: #20262E;
+        padding: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .box {
+        background: #fff;
+        border-radius: 4px;
+        padding: 20px;
+        font-size: 25px;
+        transition: all 0.2s;
+      }
+
+
+      .tr {
+        padding: 10px;
+      }
+
+      td, th {
+        text-align: left;
+        padding: 10px;
+      }
+
+      input[type="text"] {
+        width: 50rem;
+        font-size: 20px;
+        padding: 5px;
+      }
+
+      .button {
+        background: #0084ff;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 14px;
+        font-size: 15px;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+
+
+    <div class="box">
+
+      <table class="box">
+        <form>
+
+          <tr class="row">
+            <th>
+              <label for="input_url">Input URL</label>
+            </th>
+
+            <td>
+              <input type="text" id="input_url" placeholder="https://something.com">
+            </td>
+
+          </tr>
+
+          <tr class="row">
+            <th>
+              <label for="input_seo">SEO</label>
+            </th>
+            <td>
+              <input type="text" id="input_seo" placeholder="keywords...">
+            </td>
+          </tr>
+
+          <tr colspan="2" class="row">
+            <td>
+              <input type="submit" value="Go" id="go" class="button">
+            </td>
+          </tr>
+
+
+        </form>
+      </table>
+
+      Result:
+      <span id="output_url"></span>
+
+    </div>
+
+  </body>
+
+
+  <script>
+
+    $("#go").on("click", function(e){
+      e.preventDefault();
+      console.log("Transforming...");
+      var result = transformUrl($('#input_url').val(), $('#input_seo').val());
+      console.log("Result: ", result);
+      $("#output_url").html(jQuery('<a>').attr('href', result).text(result));
+    });
+
+
+    function transformUrl(inputUrl, inputSeo) {
+      console.log("Transforming: ", inputUrl, inputSeo);
+      result = inputUrl + "?keywords=" + inputSeo;
+      return result;
+    };
+  </script>
+
+</html>
